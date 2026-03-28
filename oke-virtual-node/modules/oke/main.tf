@@ -22,15 +22,15 @@ resource "oci_containerengine_virtual_node_pool" "this" {
   compartment_id     = var.compartment_id
   cluster_id         = oci_containerengine_cluster.this.id
   display_name = var.virtual_node_pool_name
-  size         = var.virtual_node_size
-  nsg_ids      = var.nsg_ids
+  size    = var.virtual_node_size
+  nsg_ids = var.nsg_ids
 
   dynamic "placement_configurations" {
     for_each = var.placement_configurations
     content {
       availability_domain = placement_configurations.value.availability_domain
       subnet_id           = placement_configurations.value.subnet_id
-      fault_domain        = try(placement_configurations.value.fault_domain, null)
+      fault_domain        = length(try(placement_configurations.value.fault_domains, [])) > 0 ? placement_configurations.value.fault_domains : null
     }
   }
 

@@ -57,8 +57,8 @@ variable "virtual_node_pool_name" {
 }
 
 variable "virtual_node_size" {
-  type        = string
-  description = "Virtual node pool size (SMALL, MEDIUM, LARGE)."
+  type        = number
+  description = "Virtual node pool size (number of virtual nodes)."
 }
 
 variable "pod_shape" {
@@ -70,7 +70,7 @@ variable "placement_configurations" {
   type = list(object({
     availability_domain = string
     subnet_id           = string
-    fault_domain        = optional(string)
+    fault_domains       = optional(list(string))
   }))
   description = "Placement configuration for virtual nodes (AD + subnet)."
 }

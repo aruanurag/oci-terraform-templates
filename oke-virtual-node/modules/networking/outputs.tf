@@ -1,26 +1,26 @@
 output "vcn_id" {
-  description = "Validated VCN OCID."
-  value       = data.oci_core_vcn.this.id
+  description = "VCN OCID."
+  value       = var.vcn_id
 }
 
 output "endpoint_subnet_id" {
-  description = "Validated endpoint subnet OCID."
-  value       = data.oci_core_subnet.endpoint.id
+  description = "Endpoint subnet OCID."
+  value       = var.endpoint_subnet_id
 }
 
 output "service_lb_subnet_id" {
-  description = "Validated service LB subnet OCID."
-  value       = data.oci_core_subnet.service_lb.id
+  description = "Service LB subnet OCID."
+  value       = var.service_lb_subnet_id
 }
 
 output "worker_subnet_ids" {
-  description = "Validated worker subnet OCIDs."
-  value       = [for s in data.oci_core_subnet.worker : s.id]
+  description = "Worker subnet OCIDs."
+  value       = var.worker_subnet_ids
 }
 
 output "pod_subnet_ids" {
-  description = "Validated pod subnet OCIDs."
-  value       = [for s in data.oci_core_subnet.pod : s.id]
+  description = "Pod subnet OCIDs."
+  value       = var.pod_subnet_ids
 }
 
 output "nsg_ids" {

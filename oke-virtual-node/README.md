@@ -55,12 +55,13 @@ module "oke_virtual_node" {
   kubernetes_version   = "v1.28.2"
   endpoint_is_public     = false
   virtual_node_pool_name = "example-vnp"
-  virtual_node_size      = "MEDIUM"
-  pod_shape              = "CI.Standard.E4.Flex"
+  virtual_node_size        = 1
+  pod_shape                = "CI.Standard.E4.Flex"
   placement_configurations = [
     {
       availability_domain = "Uocm:PHX-AD-1"
       subnet_id           = "ocid1.subnet.oc1..example"
+      fault_domains       = ["FAULT-DOMAIN-1"]
     }
   ]
 }
