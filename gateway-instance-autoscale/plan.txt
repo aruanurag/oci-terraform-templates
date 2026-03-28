@@ -1,0 +1,539 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+
+Terraform will perform the following actions:
+
+[1m  # module.autoscaling.oci_autoscaling_auto_scaling_configuration.this[0m will be created
+[0m  [32m+[0m[0m resource "oci_autoscaling_auto_scaling_configuration" "this" {
+      [32m+[0m[0m compartment_id       = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000000000000"
+      [32m+[0m[0m cool_down_in_seconds = (known after apply)
+      [32m+[0m[0m defined_tags         = (known after apply)
+      [32m+[0m[0m display_name         = "instance-pool-autoscaling"
+      [32m+[0m[0m freeform_tags        = (known after apply)
+      [32m+[0m[0m id                   = (known after apply)
+      [32m+[0m[0m is_enabled           = true
+      [32m+[0m[0m max_resource_count   = (known after apply)
+      [32m+[0m[0m min_resource_count   = (known after apply)
+      [32m+[0m[0m time_created         = (known after apply)
+
+      [32m+[0m[0m auto_scaling_resources {
+          [32m+[0m[0m id   = (known after apply)
+          [32m+[0m[0m type = "instancePool"
+        }
+
+      [32m+[0m[0m policies {
+          [32m+[0m[0m display_name = "cpu-scaling-policy"
+          [32m+[0m[0m id           = (known after apply)
+          [32m+[0m[0m is_enabled   = true
+          [32m+[0m[0m policy_type  = "threshold"
+          [32m+[0m[0m time_created = (known after apply)
+
+          [32m+[0m[0m capacity {
+              [32m+[0m[0m initial = 1
+              [32m+[0m[0m max     = 3
+              [32m+[0m[0m min     = 1
+            }
+
+          [32m+[0m[0m rules {
+              [32m+[0m[0m display_name = "scale-in"
+              [32m+[0m[0m id           = (known after apply)
+
+              [32m+[0m[0m action {
+                  [32m+[0m[0m type  = "CHANGE_COUNT_BY"
+                  [32m+[0m[0m value = -1
+                }
+
+              [32m+[0m[0m metric {
+                  [32m+[0m[0m metric_source    = "COMPUTE_AGENT"
+                  [32m+[0m[0m metric_type      = "CPU_UTILIZATION"
+                  [32m+[0m[0m pending_duration = "PT3M"
+                }
+            }
+          [32m+[0m[0m rules {
+              [32m+[0m[0m display_name = "scale-out"
+              [32m+[0m[0m id           = (known after apply)
+
+              [32m+[0m[0m action {
+                  [32m+[0m[0m type  = "CHANGE_COUNT_BY"
+                  [32m+[0m[0m value = 1
+                }
+
+              [32m+[0m[0m metric {
+                  [32m+[0m[0m metric_source    = "COMPUTE_AGENT"
+                  [32m+[0m[0m metric_type      = "CPU_UTILIZATION"
+                  [32m+[0m[0m pending_duration = "PT3M"
+                }
+            }
+        }
+    }
+
+[1m  # module.compute.oci_core_instance_configuration.this[0m will be created
+[0m  [32m+[0m[0m resource "oci_core_instance_configuration" "this" {
+      [32m+[0m[0m compartment_id  = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000000000000"
+      [32m+[0m[0m deferred_fields = (known after apply)
+      [32m+[0m[0m defined_tags    = (known after apply)
+      [32m+[0m[0m display_name    = "gateway-instance-config"
+      [32m+[0m[0m freeform_tags   = (known after apply)
+      [32m+[0m[0m id              = (known after apply)
+      [32m+[0m[0m instance_id     = (known after apply)
+      [32m+[0m[0m source          = (known after apply)
+      [32m+[0m[0m time_created    = (known after apply)
+
+      [32m+[0m[0m instance_details {
+          [32m+[0m[0m instance_type = "compute"
+
+          [32m+[0m[0m launch_details {
+              [32m+[0m[0m availability_domain                 = (known after apply)
+              [32m+[0m[0m capacity_reservation_id             = (known after apply)
+              [32m+[0m[0m cluster_placement_group_id          = (known after apply)
+              [32m+[0m[0m compartment_id                      = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000000000000"
+              [32m+[0m[0m compute_cluster_id                  = (known after apply)
+              [32m+[0m[0m dedicated_vm_host_id                = (known after apply)
+              [32m+[0m[0m defined_tags                        = (known after apply)
+              [32m+[0m[0m display_name                        = (known after apply)
+              [32m+[0m[0m extended_metadata                   = (known after apply)
+              [32m+[0m[0m fault_domain                        = (known after apply)
+              [32m+[0m[0m freeform_tags                       = (known after apply)
+              [32m+[0m[0m ipxe_script                         = (known after apply)
+              [32m+[0m[0m is_ai_enterprise_enabled            = (known after apply)
+              [32m+[0m[0m is_pv_encryption_in_transit_enabled = (known after apply)
+              [32m+[0m[0m launch_mode                         = (known after apply)
+              [32m+[0m[0m metadata                            = {
+                  [32m+[0m[0m "ssh_authorized_keys" = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD"
+                  [32m+[0m[0m "user_data"           = ""
+                }
+              [32m+[0m[0m preferred_maintenance_action        = (known after apply)
+              [32m+[0m[0m security_attributes                 = (known after apply)
+              [32m+[0m[0m shape                               = "VM.Standard.E4.Flex"
+
+              [32m+[0m[0m create_vnic_details {
+                  [32m+[0m[0m assign_ipv6ip             = (known after apply)
+                  [32m+[0m[0m assign_private_dns_record = true
+                  [32m+[0m[0m assign_public_ip          = false
+                  [32m+[0m[0m defined_tags              = (known after apply)
+                  [32m+[0m[0m display_name              = (known after apply)
+                  [32m+[0m[0m freeform_tags             = (known after apply)
+                  [32m+[0m[0m hostname_label            = (known after apply)
+                  [32m+[0m[0m private_ip                = (known after apply)
+                  [32m+[0m[0m private_ip_id             = (known after apply)
+                  [32m+[0m[0m security_attributes       = (known after apply)
+                  [32m+[0m[0m skip_source_dest_check    = (known after apply)
+                  [32m+[0m[0m subnet_cidr               = (known after apply)
+                  [32m+[0m[0m subnet_id                 = "ocid1.subnet.oc1..dryrun00000000000000000000000000000000000000000000000001"
+                }
+
+              [32m+[0m[0m shape_config {
+                  [32m+[0m[0m baseline_ocpu_utilization = (known after apply)
+                  [32m+[0m[0m memory_in_gbs             = 8
+                  [32m+[0m[0m nvmes                     = (known after apply)
+                  [32m+[0m[0m ocpus                     = 1
+                  [32m+[0m[0m resource_management       = (known after apply)
+                  [32m+[0m[0m vcpus                     = (known after apply)
+                }
+
+              [32m+[0m[0m source_details {
+                  [32m+[0m[0m boot_volume_id          = (known after apply)
+                  [32m+[0m[0m boot_volume_size_in_gbs = (known after apply)
+                  [32m+[0m[0m boot_volume_vpus_per_gb = (known after apply)
+                  [32m+[0m[0m image_id                = "ocid1.image.oc1..dryrun00000000000000000000000000000000000000000000000000"
+                  [32m+[0m[0m kms_key_id              = (known after apply)
+                  [32m+[0m[0m source_type             = "image"
+                }
+            }
+        }
+    }
+
+[1m  # module.compute.oci_core_instance_pool.this[0m will be created
+[0m  [32m+[0m[0m resource "oci_core_instance_pool" "this" {
+      [32m+[0m[0m actual_size                     = (known after apply)
+      [32m+[0m[0m compartment_id                  = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000000000000"
+      [32m+[0m[0m defined_tags                    = (known after apply)
+      [32m+[0m[0m display_name                    = "gateway-instance-pool"
+      [32m+[0m[0m freeform_tags                   = (known after apply)
+      [32m+[0m[0m id                              = (known after apply)
+      [32m+[0m[0m instance_configuration_id       = (known after apply)
+      [32m+[0m[0m instance_display_name_formatter = (known after apply)
+      [32m+[0m[0m instance_hostname_formatter     = (known after apply)
+      [32m+[0m[0m size                            = 1
+      [32m+[0m[0m state                           = (known after apply)
+      [32m+[0m[0m time_created                    = (known after apply)
+
+      [32m+[0m[0m placement_configurations {
+          [32m+[0m[0m availability_domain = "Uocm:PHX-AD-1"
+          [32m+[0m[0m fault_domains       = (known after apply)
+          [32m+[0m[0m primary_subnet_id   = "ocid1.subnet.oc1..dryrun00000000000000000000000000000000000000000000000001"
+        }
+    }
+
+[1m  # module.iam.oci_identity_policy.this[0m will be created
+[0m  [32m+[0m[0m resource "oci_identity_policy" "this" {
+      [32m+[0m[0m ETag           = (known after apply)
+      [32m+[0m[0m compartment_id = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000000000000"
+      [32m+[0m[0m defined_tags   = (known after apply)
+      [32m+[0m[0m description    = "IAM policies required for NLB + instance pool + autoscaling."
+      [32m+[0m[0m freeform_tags  = (known after apply)
+      [32m+[0m[0m id             = (known after apply)
+      [32m+[0m[0m inactive_state = (known after apply)
+      [32m+[0m[0m lastUpdateETag = (known after apply)
+      [32m+[0m[0m name           = "gateway-instance-autoscale-policy"
+      [32m+[0m[0m policyHash     = (known after apply)
+      [32m+[0m[0m state          = (known after apply)
+      [32m+[0m[0m statements     = [
+          [32m+[0m[0m "Allow service autoscaling to manage instance-pools in compartment id <compartment_ocid>",
+          [32m+[0m[0m "Allow service autoscaling to read metrics in compartment id <compartment_ocid>",
+          [32m+[0m[0m "Allow service compute to manage instance-family in compartment id <compartment_ocid>",
+          [32m+[0m[0m "Allow service compute to use subnets in compartment id <compartment_ocid>",
+          [32m+[0m[0m "Allow service compute to use network-security-groups in compartment id <compartment_ocid>",
+          [32m+[0m[0m "Allow service network-load-balancer to use subnets in compartment id <compartment_ocid>",
+          [32m+[0m[0m "Allow service network-load-balancer to use network-security-groups in compartment id <compartment_ocid>",
+        ]
+      [32m+[0m[0m time_created   = (known after apply)
+      [32m+[0m[0m version_date   = (known after apply)
+    }
+
+[1m  # module.nlb.oci_network_load_balancer_backend_set.this[0m will be created
+[0m  [32m+[0m[0m resource "oci_network_load_balancer_backend_set" "this" {
+      [32m+[0m[0m are_operationally_active_backends_preferred = (known after apply)
+      [32m+[0m[0m backends                                    = (known after apply)
+      [32m+[0m[0m id                                          = (known after apply)
+      [32m+[0m[0m ip_version                                  = (known after apply)
+      [32m+[0m[0m is_fail_open                                = (known after apply)
+      [32m+[0m[0m is_instant_failover_enabled                 = (known after apply)
+      [32m+[0m[0m is_instant_failover_tcp_reset_enabled       = (known after apply)
+      [32m+[0m[0m is_preserve_source                          = (known after apply)
+      [32m+[0m[0m name                                        = "backend-set"
+      [32m+[0m[0m network_load_balancer_id                    = (known after apply)
+      [32m+[0m[0m policy                                      = "FIVE_TUPLE"
+
+      [32m+[0m[0m health_checker {
+          [32m+[0m[0m interval_in_millis  = (known after apply)
+          [32m+[0m[0m port                = 8080
+          [32m+[0m[0m protocol            = "TCP"
+          [32m+[0m[0m request_data        = (known after apply)
+          [32m+[0m[0m response_body_regex = (known after apply)
+          [32m+[0m[0m response_data       = (known after apply)
+          [32m+[0m[0m retries             = (known after apply)
+          [32m+[0m[0m return_code         = (known after apply)
+          [32m+[0m[0m timeout_in_millis   = (known after apply)
+          [32m+[0m[0m url_path            = (known after apply)
+        }
+    }
+
+[1m  # module.nlb.oci_network_load_balancer_listener.this[0m will be created
+[0m  [32m+[0m[0m resource "oci_network_load_balancer_listener" "this" {
+      [32m+[0m[0m default_backend_set_name = "backend-set"
+      [32m+[0m[0m id                       = (known after apply)
+      [32m+[0m[0m ip_version               = (known after apply)
+      [32m+[0m[0m is_ppv2enabled           = (known after apply)
+      [32m+[0m[0m l3ip_idle_timeout        = (known after apply)
+      [32m+[0m[0m name                     = "listener"
+      [32m+[0m[0m network_load_balancer_id = (known after apply)
+      [32m+[0m[0m port                     = 80
+      [32m+[0m[0m protocol                 = "TCP"
+      [32m+[0m[0m tcp_idle_timeout         = (known after apply)
+      [32m+[0m[0m udp_idle_timeout         = (known after apply)
+    }
+
+[1m  # module.nlb.oci_network_load_balancer_network_load_balancer.this[0m will be created
+[0m  [32m+[0m[0m resource "oci_network_load_balancer_network_load_balancer" "this" {
+      [32m+[0m[0m compartment_id                 = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000000000000"
+      [32m+[0m[0m defined_tags                   = (known after apply)
+      [32m+[0m[0m display_name                   = "gateway-nlb"
+      [32m+[0m[0m freeform_tags                  = (known after apply)
+      [32m+[0m[0m id                             = (known after apply)
+      [32m+[0m[0m ip_addresses                   = (known after apply)
+      [32m+[0m[0m is_preserve_source_destination = (known after apply)
+      [32m+[0m[0m is_private                     = true
+      [32m+[0m[0m is_symmetric_hash_enabled      = (known after apply)
+      [32m+[0m[0m lifecycle_details              = (known after apply)
+      [32m+[0m[0m nlb_ip_version                 = (known after apply)
+      [32m+[0m[0m security_attributes            = (known after apply)
+      [32m+[0m[0m state                          = (known after apply)
+      [32m+[0m[0m subnet_id                      = "ocid1.subnet.oc1..dryrun00000000000000000000000000000000000000000000000000"
+      [32m+[0m[0m system_tags                    = (known after apply)
+      [32m+[0m[0m time_created                   = (known after apply)
+      [32m+[0m[0m time_updated                   = (known after apply)
+    }
+
+[1mPlan:[0m 7 to add, 0 to change, 0 to destroy.
+[0m
+Changes to Outputs:
+  [32m+[0m[0m autoscaling_configuration_id = (known after apply)
+  [32m+[0m[0m iam_policy_id                = (known after apply)
+  [32m+[0m[0m instance_pool_id             = (known after apply)
+  [32m+[0m[0m nlb_id                       = (known after apply)
+[90m
+─────────────────────────────────────────────────────────────────────────────[0m
+
+Saved the plan to: plan.out
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "plan.out"
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.autoscaling.oci_autoscaling_auto_scaling_configuration.this will be created
+  + resource "oci_autoscaling_auto_scaling_configuration" "this" {
+      + compartment_id       = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000000000000"
+      + cool_down_in_seconds = (known after apply)
+      + defined_tags         = (known after apply)
+      + display_name         = "instance-pool-autoscaling"
+      + freeform_tags        = (known after apply)
+      + id                   = (known after apply)
+      + is_enabled           = true
+      + max_resource_count   = (known after apply)
+      + min_resource_count   = (known after apply)
+      + time_created         = (known after apply)
+
+      + auto_scaling_resources {
+          + id   = (known after apply)
+          + type = "instancePool"
+        }
+
+      + policies {
+          + display_name = "cpu-scaling-policy"
+          + id           = (known after apply)
+          + is_enabled   = true
+          + policy_type  = "threshold"
+          + time_created = (known after apply)
+
+          + capacity {
+              + initial = 1
+              + max     = 3
+              + min     = 1
+            }
+
+          + rules {
+              + display_name = "scale-in"
+              + id           = (known after apply)
+
+              + action {
+                  + type  = "CHANGE_COUNT_BY"
+                  + value = -1
+                }
+
+              + metric {
+                  + metric_source    = "COMPUTE_AGENT"
+                  + metric_type      = "CPU_UTILIZATION"
+                  + pending_duration = "PT3M"
+                }
+            }
+          + rules {
+              + display_name = "scale-out"
+              + id           = (known after apply)
+
+              + action {
+                  + type  = "CHANGE_COUNT_BY"
+                  + value = 1
+                }
+
+              + metric {
+                  + metric_source    = "COMPUTE_AGENT"
+                  + metric_type      = "CPU_UTILIZATION"
+                  + pending_duration = "PT3M"
+                }
+            }
+        }
+    }
+
+  # module.compute.oci_core_instance_configuration.this will be created
+  + resource "oci_core_instance_configuration" "this" {
+      + compartment_id  = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000000000000"
+      + deferred_fields = (known after apply)
+      + defined_tags    = (known after apply)
+      + display_name    = "gateway-instance-config"
+      + freeform_tags   = (known after apply)
+      + id              = (known after apply)
+      + instance_id     = (known after apply)
+      + source          = (known after apply)
+      + time_created    = (known after apply)
+
+      + instance_details {
+          + instance_type = "compute"
+
+          + launch_details {
+              + availability_domain                 = (known after apply)
+              + capacity_reservation_id             = (known after apply)
+              + cluster_placement_group_id          = (known after apply)
+              + compartment_id                      = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000000000000"
+              + compute_cluster_id                  = (known after apply)
+              + dedicated_vm_host_id                = (known after apply)
+              + defined_tags                        = (known after apply)
+              + display_name                        = (known after apply)
+              + extended_metadata                   = (known after apply)
+              + fault_domain                        = (known after apply)
+              + freeform_tags                       = (known after apply)
+              + ipxe_script                         = (known after apply)
+              + is_ai_enterprise_enabled            = (known after apply)
+              + is_pv_encryption_in_transit_enabled = (known after apply)
+              + launch_mode                         = (known after apply)
+              + metadata                            = {
+                  + "ssh_authorized_keys" = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD"
+                  + "user_data"           = ""
+                }
+              + preferred_maintenance_action        = (known after apply)
+              + security_attributes                 = (known after apply)
+              + shape                               = "VM.Standard.E4.Flex"
+
+              + create_vnic_details {
+                  + assign_ipv6ip             = (known after apply)
+                  + assign_private_dns_record = true
+                  + assign_public_ip          = false
+                  + defined_tags              = (known after apply)
+                  + display_name              = (known after apply)
+                  + freeform_tags             = (known after apply)
+                  + hostname_label            = (known after apply)
+                  + private_ip                = (known after apply)
+                  + private_ip_id             = (known after apply)
+                  + security_attributes       = (known after apply)
+                  + skip_source_dest_check    = (known after apply)
+                  + subnet_cidr               = (known after apply)
+                  + subnet_id                 = "ocid1.subnet.oc1..dryrun00000000000000000000000000000000000000000000000001"
+                }
+
+              + shape_config {
+                  + baseline_ocpu_utilization = (known after apply)
+                  + memory_in_gbs             = 8
+                  + nvmes                     = (known after apply)
+                  + ocpus                     = 1
+                  + resource_management       = (known after apply)
+                  + vcpus                     = (known after apply)
+                }
+
+              + source_details {
+                  + boot_volume_id          = (known after apply)
+                  + boot_volume_size_in_gbs = (known after apply)
+                  + boot_volume_vpus_per_gb = (known after apply)
+                  + image_id                = "ocid1.image.oc1..dryrun00000000000000000000000000000000000000000000000000"
+                  + kms_key_id              = (known after apply)
+                  + source_type             = "image"
+                }
+            }
+        }
+    }
+
+  # module.compute.oci_core_instance_pool.this will be created
+  + resource "oci_core_instance_pool" "this" {
+      + actual_size                     = (known after apply)
+      + compartment_id                  = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000000000000"
+      + defined_tags                    = (known after apply)
+      + display_name                    = "gateway-instance-pool"
+      + freeform_tags                   = (known after apply)
+      + id                              = (known after apply)
+      + instance_configuration_id       = (known after apply)
+      + instance_display_name_formatter = (known after apply)
+      + instance_hostname_formatter     = (known after apply)
+      + size                            = 1
+      + state                           = (known after apply)
+      + time_created                    = (known after apply)
+
+      + placement_configurations {
+          + availability_domain = "Uocm:PHX-AD-1"
+          + fault_domains       = (known after apply)
+          + primary_subnet_id   = "ocid1.subnet.oc1..dryrun00000000000000000000000000000000000000000000000001"
+        }
+    }
+
+  # module.iam.oci_identity_policy.this will be created
+  + resource "oci_identity_policy" "this" {
+      + ETag           = (known after apply)
+      + compartment_id = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000000000000"
+      + defined_tags   = (known after apply)
+      + description    = "IAM policies required for NLB + instance pool + autoscaling."
+      + freeform_tags  = (known after apply)
+      + id             = (known after apply)
+      + inactive_state = (known after apply)
+      + lastUpdateETag = (known after apply)
+      + name           = "gateway-instance-autoscale-policy"
+      + policyHash     = (known after apply)
+      + state          = (known after apply)
+      + statements     = [
+          + "Allow service autoscaling to manage instance-pools in compartment id <compartment_ocid>",
+          + "Allow service autoscaling to read metrics in compartment id <compartment_ocid>",
+          + "Allow service compute to manage instance-family in compartment id <compartment_ocid>",
+          + "Allow service compute to use subnets in compartment id <compartment_ocid>",
+          + "Allow service compute to use network-security-groups in compartment id <compartment_ocid>",
+          + "Allow service network-load-balancer to use subnets in compartment id <compartment_ocid>",
+          + "Allow service network-load-balancer to use network-security-groups in compartment id <compartment_ocid>",
+        ]
+      + time_created   = (known after apply)
+      + version_date   = (known after apply)
+    }
+
+  # module.nlb.oci_network_load_balancer_backend_set.this will be created
+  + resource "oci_network_load_balancer_backend_set" "this" {
+      + are_operationally_active_backends_preferred = (known after apply)
+      + backends                                    = (known after apply)
+      + id                                          = (known after apply)
+      + ip_version                                  = (known after apply)
+      + is_fail_open                                = (known after apply)
+      + is_instant_failover_enabled                 = (known after apply)
+      + is_instant_failover_tcp_reset_enabled       = (known after apply)
+      + is_preserve_source                          = (known after apply)
+      + name                                        = "backend-set"
+      + network_load_balancer_id                    = (known after apply)
+      + policy                                      = "FIVE_TUPLE"
+
+      + health_checker {
+          + interval_in_millis  = (known after apply)
+          + port                = 8080
+          + protocol            = "TCP"
+          + request_data        = (known after apply)
+          + response_body_regex = (known after apply)
+          + response_data       = (known after apply)
+          + retries             = (known after apply)
+          + return_code         = (known after apply)
+          + timeout_in_millis   = (known after apply)
+          + url_path            = (known after apply)
+        }
+    }
+
+  # module.nlb.oci_network_load_balancer_listener.this will be created
+  + resource "oci_network_load_balancer_listener" "this" {
+      + default_backend_set_name = "backend-set"
+      + id                       = (known after apply)
+      + ip_version               = (known after apply)
+      + is_ppv2enabled           = (known after apply)
+      + l3ip_idle_timeout        = (known after apply)
+      + name                     = "listener"
+      + network_load_balancer_id = (known after apply)
+      + port                     = 80
+      + protocol                 = "TCP"
+      + tcp_idle_timeout         = (known after apply)
+      + udp_idle_timeout         = (known after apply)
+    }
+
+  # module.nlb.oci_network_load_balancer_network_load_balancer.this will be created
+  + resource "oci_network_load_balancer_network_load_balancer" "this" {
+      + compartment_id                 = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000000000000"
+      + defined_tags                   = (known after apply)
+      + display_name                   = "gateway-nlb"
+      + freeform_tags                  = (known after apply)
+      + id                             = (known after apply)
+      + ip_addresses                   = (known after apply)
+      + is_preserve_source_destination = (known after apply)
+      + is_private                     = true
+      + is_symmetric_hash_enabled      = (known after apply)
+      + lifecycle_details              = (known after apply)
+      + nlb_ip_version                 = (known after apply)
+      + security_attributes            = (known after apply)
+      + state                          = (known after apply)
+      + subnet_id                      = "ocid1.subnet.oc1..dryrun00000000000000000000000000000000000000000000000000"
+      + system_tags                    = (known after apply)
+      + time_created                   = (known after apply)
+      + time_updated                   = (known after apply)
+    }
+
+Plan: 7 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + autoscaling_configuration_id = (known after apply)
+  + iam_policy_id                = (known after apply)
+  + instance_pool_id             = (known after apply)
+  + nlb_id                       = (known after apply)
