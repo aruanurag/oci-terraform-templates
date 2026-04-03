@@ -1,0 +1,301 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+
+Terraform will perform the following actions:
+
+[1m  # module.logging.oci_logging_log.this[0m will be created
+[0m  [32m+[0m[0m resource "oci_logging_log" "this" {
+      [32m+[0m[0m compartment_id     = (known after apply)
+      [32m+[0m[0m defined_tags       = (known after apply)
+      [32m+[0m[0m display_name       = "dry-run-log_display_name"
+      [32m+[0m[0m freeform_tags      = (known after apply)
+      [32m+[0m[0m id                 = (known after apply)
+      [32m+[0m[0m is_enabled         = true
+      [32m+[0m[0m log_group_id       = (known after apply)
+      [32m+[0m[0m log_type           = "SERVICE"
+      [32m+[0m[0m retention_duration = 30
+      [32m+[0m[0m state              = (known after apply)
+      [32m+[0m[0m tenancy_id         = (known after apply)
+      [32m+[0m[0m time_created       = (known after apply)
+      [32m+[0m[0m time_last_modified = (known after apply)
+
+      [32m+[0m[0m configuration {
+          [32m+[0m[0m compartment_id = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000"
+
+          [32m+[0m[0m source {
+              [32m+[0m[0m category    = "dummy-log_source_category"
+              [32m+[0m[0m parameters  = (known after apply)
+              [32m+[0m[0m resource    = "dummy-log_source_resource"
+              [32m+[0m[0m service     = "dummy-log_source_service"
+              [32m+[0m[0m source_type = "OCISERVICE"
+            }
+        }
+    }
+
+[1m  # module.logging.oci_logging_log_group.this[0m will be created
+[0m  [32m+[0m[0m resource "oci_logging_log_group" "this" {
+      [32m+[0m[0m compartment_id     = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000"
+      [32m+[0m[0m defined_tags       = (known after apply)
+      [32m+[0m[0m description        = "Log group for streaming log pipeline"
+      [32m+[0m[0m display_name       = "dry-run-log_group_display_name"
+      [32m+[0m[0m freeform_tags      = (known after apply)
+      [32m+[0m[0m id                 = (known after apply)
+      [32m+[0m[0m state              = (known after apply)
+      [32m+[0m[0m time_created       = (known after apply)
+      [32m+[0m[0m time_last_modified = (known after apply)
+    }
+
+[1m  # module.service_connector.oci_sch_service_connector.this[0m will be created
+[0m  [32m+[0m[0m resource "oci_sch_service_connector" "this" {
+      [32m+[0m[0m compartment_id    = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000"
+      [32m+[0m[0m defined_tags      = (known after apply)
+      [32m+[0m[0m description       = "Logging to Streaming connector"
+      [32m+[0m[0m display_name      = "dry-run-service_connector_display_name"
+      [32m+[0m[0m freeform_tags     = (known after apply)
+      [32m+[0m[0m id                = (known after apply)
+      [32m+[0m[0m lifecycle_details = (known after apply)
+      [32m+[0m[0m lifecyle_details  = (known after apply)
+      [32m+[0m[0m state             = (known after apply)
+      [32m+[0m[0m system_tags       = (known after apply)
+      [32m+[0m[0m time_created      = (known after apply)
+      [32m+[0m[0m time_updated      = (known after apply)
+
+      [32m+[0m[0m source {
+          [32m+[0m[0m config_map                = (known after apply)
+          [32m+[0m[0m kind                      = "logging"
+          [32m+[0m[0m plugin_name               = (known after apply)
+          [32m+[0m[0m private_endpoint_metadata = (known after apply)
+          [32m+[0m[0m stream_id                 = (known after apply)
+
+          [32m+[0m[0m log_sources {
+              [32m+[0m[0m compartment_id = "ocid1.log_source_compartment.oc1..dryrun0000000000000000000000000000000000000000"
+              [32m+[0m[0m log_group_id   = (known after apply)
+              [32m+[0m[0m log_id         = (known after apply)
+            }
+        }
+
+      [32m+[0m[0m target {
+          [32m+[0m[0m batch_rollover_size_in_mbs = (known after apply)
+          [32m+[0m[0m batch_rollover_time_in_ms  = (known after apply)
+          [32m+[0m[0m batch_size_in_kbs          = (known after apply)
+          [32m+[0m[0m batch_size_in_num          = (known after apply)
+          [32m+[0m[0m batch_time_in_sec          = (known after apply)
+          [32m+[0m[0m bucket                     = (known after apply)
+          [32m+[0m[0m compartment_id             = (known after apply)
+          [32m+[0m[0m enable_formatted_messaging = (known after apply)
+          [32m+[0m[0m function_id                = (known after apply)
+          [32m+[0m[0m kind                       = "streaming"
+          [32m+[0m[0m log_group_id               = (known after apply)
+          [32m+[0m[0m log_source_identifier      = (known after apply)
+          [32m+[0m[0m metric                     = (known after apply)
+          [32m+[0m[0m metric_namespace           = (known after apply)
+          [32m+[0m[0m namespace                  = (known after apply)
+          [32m+[0m[0m object_name_prefix         = (known after apply)
+          [32m+[0m[0m private_endpoint_metadata  = (known after apply)
+          [32m+[0m[0m stream_id                  = (known after apply)
+          [32m+[0m[0m topic_id                   = (known after apply)
+        }
+    }
+
+[1m  # module.streaming.oci_streaming_stream.this[0m will be created
+[0m  [32m+[0m[0m resource "oci_streaming_stream" "this" {
+      [32m+[0m[0m compartment_id          = (known after apply)
+      [32m+[0m[0m defined_tags            = (known after apply)
+      [32m+[0m[0m freeform_tags           = (known after apply)
+      [32m+[0m[0m id                      = (known after apply)
+      [32m+[0m[0m lifecycle_state_details = (known after apply)
+      [32m+[0m[0m messages_endpoint       = (known after apply)
+      [32m+[0m[0m name                    = "dry-run-stream_name"
+      [32m+[0m[0m partitions              = 1
+      [32m+[0m[0m retention_in_hours      = 24
+      [32m+[0m[0m state                   = (known after apply)
+      [32m+[0m[0m stream_pool_id          = (known after apply)
+      [32m+[0m[0m time_created            = (known after apply)
+    }
+
+[1m  # module.streaming.oci_streaming_stream_pool.this[0m will be created
+[0m  [32m+[0m[0m resource "oci_streaming_stream_pool" "this" {
+      [32m+[0m[0m compartment_id          = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000"
+      [32m+[0m[0m defined_tags            = (known after apply)
+      [32m+[0m[0m endpoint_fqdn           = (known after apply)
+      [32m+[0m[0m freeform_tags           = (known after apply)
+      [32m+[0m[0m id                      = (known after apply)
+      [32m+[0m[0m is_private              = (known after apply)
+      [32m+[0m[0m lifecycle_state_details = (known after apply)
+      [32m+[0m[0m name                    = "dry-run-stream_pool_name"
+      [32m+[0m[0m security_attributes     = (known after apply)
+      [32m+[0m[0m state                   = (known after apply)
+      [32m+[0m[0m time_created            = (known after apply)
+
+      [32m+[0m[0m kafka_settings {
+          [32m+[0m[0m auto_create_topics_enable = true
+          [32m+[0m[0m bootstrap_servers         = (known after apply)
+          [32m+[0m[0m log_retention_hours       = 24
+          [32m+[0m[0m num_partitions            = 1
+        }
+    }
+
+[1mPlan:[0m 5 to add, 0 to change, 0 to destroy.
+[0m
+Changes to Outputs:
+  [32m+[0m[0m log_group_id         = (known after apply)
+  [32m+[0m[0m log_id               = (known after apply)
+  [32m+[0m[0m service_connector_id = (known after apply)
+  [32m+[0m[0m stream_id            = (known after apply)
+  [32m+[0m[0m stream_pool_id       = (known after apply)
+[90m
+─────────────────────────────────────────────────────────────────────────────[0m
+
+Saved the plan to: plan.out
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "plan.out"
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.logging.oci_logging_log.this will be created
+  + resource "oci_logging_log" "this" {
+      + compartment_id     = (known after apply)
+      + defined_tags       = (known after apply)
+      + display_name       = "dry-run-log_display_name"
+      + freeform_tags      = (known after apply)
+      + id                 = (known after apply)
+      + is_enabled         = true
+      + log_group_id       = (known after apply)
+      + log_type           = "SERVICE"
+      + retention_duration = 30
+      + state              = (known after apply)
+      + tenancy_id         = (known after apply)
+      + time_created       = (known after apply)
+      + time_last_modified = (known after apply)
+
+      + configuration {
+          + compartment_id = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000"
+
+          + source {
+              + category    = "dummy-log_source_category"
+              + parameters  = (known after apply)
+              + resource    = "dummy-log_source_resource"
+              + service     = "dummy-log_source_service"
+              + source_type = "OCISERVICE"
+            }
+        }
+    }
+
+  # module.logging.oci_logging_log_group.this will be created
+  + resource "oci_logging_log_group" "this" {
+      + compartment_id     = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000"
+      + defined_tags       = (known after apply)
+      + description        = "Log group for streaming log pipeline"
+      + display_name       = "dry-run-log_group_display_name"
+      + freeform_tags      = (known after apply)
+      + id                 = (known after apply)
+      + state              = (known after apply)
+      + time_created       = (known after apply)
+      + time_last_modified = (known after apply)
+    }
+
+  # module.service_connector.oci_sch_service_connector.this will be created
+  + resource "oci_sch_service_connector" "this" {
+      + compartment_id    = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000"
+      + defined_tags      = (known after apply)
+      + description       = "Logging to Streaming connector"
+      + display_name      = "dry-run-service_connector_display_name"
+      + freeform_tags     = (known after apply)
+      + id                = (known after apply)
+      + lifecycle_details = (known after apply)
+      + lifecyle_details  = (known after apply)
+      + state             = (known after apply)
+      + system_tags       = (known after apply)
+      + time_created      = (known after apply)
+      + time_updated      = (known after apply)
+
+      + source {
+          + config_map                = (known after apply)
+          + kind                      = "logging"
+          + plugin_name               = (known after apply)
+          + private_endpoint_metadata = (known after apply)
+          + stream_id                 = (known after apply)
+
+          + log_sources {
+              + compartment_id = "ocid1.log_source_compartment.oc1..dryrun0000000000000000000000000000000000000000"
+              + log_group_id   = (known after apply)
+              + log_id         = (known after apply)
+            }
+        }
+
+      + target {
+          + batch_rollover_size_in_mbs = (known after apply)
+          + batch_rollover_time_in_ms  = (known after apply)
+          + batch_size_in_kbs          = (known after apply)
+          + batch_size_in_num          = (known after apply)
+          + batch_time_in_sec          = (known after apply)
+          + bucket                     = (known after apply)
+          + compartment_id             = (known after apply)
+          + enable_formatted_messaging = (known after apply)
+          + function_id                = (known after apply)
+          + kind                       = "streaming"
+          + log_group_id               = (known after apply)
+          + log_source_identifier      = (known after apply)
+          + metric                     = (known after apply)
+          + metric_namespace           = (known after apply)
+          + namespace                  = (known after apply)
+          + object_name_prefix         = (known after apply)
+          + private_endpoint_metadata  = (known after apply)
+          + stream_id                  = (known after apply)
+          + topic_id                   = (known after apply)
+        }
+    }
+
+  # module.streaming.oci_streaming_stream.this will be created
+  + resource "oci_streaming_stream" "this" {
+      + compartment_id          = (known after apply)
+      + defined_tags            = (known after apply)
+      + freeform_tags           = (known after apply)
+      + id                      = (known after apply)
+      + lifecycle_state_details = (known after apply)
+      + messages_endpoint       = (known after apply)
+      + name                    = "dry-run-stream_name"
+      + partitions              = 1
+      + retention_in_hours      = 24
+      + state                   = (known after apply)
+      + stream_pool_id          = (known after apply)
+      + time_created            = (known after apply)
+    }
+
+  # module.streaming.oci_streaming_stream_pool.this will be created
+  + resource "oci_streaming_stream_pool" "this" {
+      + compartment_id          = "ocid1.compartment.oc1..dryrun0000000000000000000000000000000000000000"
+      + defined_tags            = (known after apply)
+      + endpoint_fqdn           = (known after apply)
+      + freeform_tags           = (known after apply)
+      + id                      = (known after apply)
+      + is_private              = (known after apply)
+      + lifecycle_state_details = (known after apply)
+      + name                    = "dry-run-stream_pool_name"
+      + security_attributes     = (known after apply)
+      + state                   = (known after apply)
+      + time_created            = (known after apply)
+
+      + kafka_settings {
+          + auto_create_topics_enable = true
+          + bootstrap_servers         = (known after apply)
+          + log_retention_hours       = 24
+          + num_partitions            = 1
+        }
+    }
+
+Plan: 5 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + log_group_id         = (known after apply)
+  + log_id               = (known after apply)
+  + service_connector_id = (known after apply)
+  + stream_id            = (known after apply)
+  + stream_pool_id       = (known after apply)
